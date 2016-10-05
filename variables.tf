@@ -15,3 +15,7 @@ variable "vpc_cidr" {
   description = "CIDR for VPC"
   default     = "10.240.0.0/16"
 }
+variable "vpc_subnet_cidr" {
+  description = "CIDR for VPC"
+  default     = "10.240.0.0/24"
+}
