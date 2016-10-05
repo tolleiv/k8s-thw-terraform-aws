@@ -178,6 +178,19 @@ resource "aws_instance" "controller" {
   key_name = "${aws_key_pair.kubernetes.key_name}"
   private_ip = "${lookup(var.instance_controller_ips, count.index)}"
   subnet_id = "${aws_subnet.main.id}"
+
+  provisioner "file" {
+    source = "ca/ca.pem"
+    destination = "/home/ubuntu/ca.pem"
+  }
+  provisioner "file" {
+    source = "ca/kubernetes-key.pem"
+    destination = "/home/ubuntu/kubernetes-key.pem"
+  }
+  provisioner "file" {
+    source = "ca/kubernetes.pem"
+    destination = "/home/ubuntu/kubernetes.pem"
+  }
 }
 resource "aws_instance" "worker" {
   count = 3
@@ -193,4 +206,17 @@ resource "aws_instance" "worker" {
   key_name = "${aws_key_pair.kubernetes.key_name}"
   private_ip = "${lookup(var.instance_worker_ips, count.index)}"
   subnet_id = "${aws_subnet.main.id}"
+
+  provisioner "file" {
+    source = "ca/ca.pem"
+    destination = "/home/ubuntu/ca.pem"
+  }
+  provisioner "file" {
+    source = "ca/kubernetes-key.pem"
+    destination = "/home/ubuntu/kubernetes-key.pem"
+  }
+  provisioner "file" {
+    source = "ca/kubernetes.pem"
+    destination = "/home/ubuntu/kubernetes.pem"
+  }
 }
