@@ -57,6 +57,7 @@ resource "aws_route_table_association" "main" {
 resource "aws_security_group" "kubernetes" {
   name = "kubernetes"
   description = "Kubernetes security group"
+  vpc_id = "${aws_vpc.main.id}"
 
   tags {
     Name = "kubernetes"
@@ -71,6 +72,7 @@ resource "aws_security_group_rule" "all_internal" {
   cidr_blocks = ["${var.vpc_cidr}"]
   security_group_id = "${aws_security_group.kubernetes.id}"
 }
+
 resource "aws_security_group_rule" "ssh_anywhere" {
   type = "ingress"
   from_port = 22
@@ -79,6 +81,7 @@ resource "aws_security_group_rule" "ssh_anywhere" {
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.kubernetes.id}"
 }
+
 resource "aws_security_group_rule" "alt_https_anywhere" {
   type = "ingress"
   from_port = 6443
@@ -86,4 +89,21 @@ resource "aws_security_group_rule" "alt_https_anywhere" {
   protocol = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.kubernetes.id}"
+}
+
+resource "aws_elb" "kubernetes" {
+  name = "kubernetes"
+  subnets = ["${aws_subnet.main.id}"]
+
+  listener {
+    instance_port = 6443
+    instance_protocol = "tcp"
+    lb_port = 6443
+    lb_protocol = "tcp"
+  }
+  security_groups = ["${aws_security_group.kubernetes.id}"]
+
+  tags {
+    Name = "kubernetes"
+  }
 }
