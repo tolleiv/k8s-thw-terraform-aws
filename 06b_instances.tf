@@ -27,6 +27,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "controller" {
   count = "${var.instance_controller_count}"
   ami = "${data.aws_ami.ubuntu.id}"
+
   instance_type = "m3.medium"
   tags {
     Name = "${format("controller%d", count.index)}"
@@ -39,6 +40,7 @@ resource "aws_instance" "controller" {
   private_ip = "${lookup(var.instance_controller_ips, count.index)}"
   subnet_id = "${aws_subnet.main.id}"
 }
+
 resource "aws_instance" "worker" {
   count = "${var.instance_worker_count}"
   ami = "${data.aws_ami.ubuntu.id}"

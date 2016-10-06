@@ -8,6 +8,15 @@ resource "aws_security_group" "kubernetes" {
   }
 }
 
+resource "aws_security_group_rule" "all_outgoing" {
+  type = "egress"
+  from_port = 0
+  to_port = 65535
+  protocol = "-1"
+  cidr_blocks = [
+    "0.0.0.0/0"]
+  security_group_id = "${aws_security_group.kubernetes.id}"
+}
 resource "aws_security_group_rule" "all_internal" {
   type = "ingress"
   from_port = 0
