@@ -20,6 +20,11 @@ variable "vpc_subnet_cidr" {
   default     = "10.240.0.0/24"
 }
 
+variable "instance_controller_count" {
+  description = "Number of controller instances"
+  default = 3
+}
+
 variable "instance_controller_ips" {
   description = "IPs to pick for the controllers"
   default = {
@@ -28,6 +33,12 @@ variable "instance_controller_ips" {
     "2" = "10.240.0.12"
   }
 }
+
+variable "instance_worker_count" {
+  description = "Number of worker instances"
+  default = 3
+}
+
 variable "instance_worker_ips" {
   description = "IPs to pick for the controllers"
   default = {
