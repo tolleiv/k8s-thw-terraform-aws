@@ -1,4 +1,6 @@
-
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/03-etcd.md
+#
 resource "null_resource" "provision-etcd" {
   depends_on = ["null_resource.copy-cert-workers"]
 

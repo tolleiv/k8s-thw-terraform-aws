@@ -1,4 +1,6 @@
-
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-worker.md
+#
 resource "null_resource" "provision-k8s-worker" {
   depends_on = [
     "null_resource.provision-k8s-controller", "null_resource.kubernetes-cert"]

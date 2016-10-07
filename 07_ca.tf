@@ -1,4 +1,6 @@
-
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/02-certificate-authority.md
+#
 resource "null_resource" "cfssl" {
   provisioner "local-exec" {
     command = "./ca-scripts/create-ca.sh"

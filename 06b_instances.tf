@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-infrastructure-aws.md#user-content-chosing-an-image
+#
 resource "null_resource" "ssh-key" {
   provisioner "local-exec" {
     command = <<EOT

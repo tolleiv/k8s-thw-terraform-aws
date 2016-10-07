@@ -1,4 +1,6 @@
-
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/08-dns-addon.md
+#
 resource "null_resource" "provision-k8s-dns-addon" {
   depends_on = [
     "null_resource.provision-k8s-client"]

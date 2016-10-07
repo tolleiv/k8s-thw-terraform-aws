@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-infrastructure-aws.md#user-content-kubernetes-public-address
+#
 resource "aws_elb" "kubernetes" {
   name = "kubernetes"
   subnets = [

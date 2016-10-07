@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-infrastructure-aws.md#user-content-vpc
+#
 provider "aws" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"

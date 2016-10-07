@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/07-network.md
+#
 resource "aws_route" "workers" {
   route_table_id = "${aws_route_table.main.id}"
   count = "${var.instance_worker_count}"

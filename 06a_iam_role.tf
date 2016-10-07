@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-infrastructure-aws.md#user-content-create-instance-iam-policies
+#
 resource "aws_iam_role" "kubernetes" {
   name = "kubernetes"
   assume_role_policy = <<EOF

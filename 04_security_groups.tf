@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-infrastructure-aws.md#firewall-rules
+#
 resource "aws_security_group" "kubernetes" {
   name = "kubernetes"
   description = "Kubernetes security group"

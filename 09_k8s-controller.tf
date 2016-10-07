@@ -1,4 +1,6 @@
-
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-kubernetes-controller.md
+#
 resource "null_resource" "provision-k8s-controller" {
   depends_on = [
     "null_resource.provision-etcd", "null_resource.kubernetes-cert"]

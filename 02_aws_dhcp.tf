@@ -1,3 +1,6 @@
+#
+# https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-infrastructure-aws.md#user-content-dhcp-option-sets
+#
 resource "aws_vpc_dhcp_options" "main" {
   domain_name = "eu-central-1.compute.internal"
   domain_name_servers = [
