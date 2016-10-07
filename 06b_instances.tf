@@ -21,17 +21,16 @@ data "aws_ami" "ubuntu" {
   most_recent = true
   filter {
     name = "name"
-    values = [
-      "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
   }
-  owners = ["099720109477"] # Canonical
+  # owners = ["099720109477"] # Canonical
 }
 
 resource "aws_instance" "controller" {
   count = "${var.instance_controller_count}"
   ami = "${data.aws_ami.ubuntu.id}"
 
-  instance_type = "m3.medium"
+  instance_type = "${var.instance_controller_type}"
   tags {
     Name = "${format("controller%d", count.index)}"
   }
@@ -47,7 +46,7 @@ resource "aws_instance" "controller" {
 resource "aws_instance" "worker" {
   count = "${var.instance_worker_count}"
   ami = "${data.aws_ami.ubuntu.id}"
-  instance_type = "m3.medium"
+  instance_type = "${var.instance_worker_type}"
   tags {
     Name = "${format("worker%d", count.index)}"
   }

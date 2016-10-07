@@ -20,6 +20,12 @@ variable "vpc_subnet_cidr" {
   default     = "10.240.0.0/24"
 }
 
+
+variable "instance_controller_type" {
+  description = "Type of the controller instances"
+  default = "m3.medium"
+}
+
 variable "instance_controller_count" {
   description = "Number of controller instances"
   default = 3
@@ -32,6 +38,11 @@ variable "instance_controller_ips" {
     "1" = "10.240.0.11"
     "2" = "10.240.0.12"
   }
+}
+
+variable "instance_worker_type" {
+  description = "Type of the worker instances"
+  default = "m3.large"
 }
 
 variable "instance_worker_count" {
