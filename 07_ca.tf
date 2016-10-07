@@ -50,7 +50,7 @@ EOT
   }
 }
 
-resource "null_resource" "copy-cert-workers" {
+resource "null_resource" "copy-cert" {
   count = "${var.instance_controller_count + var.instance_worker_count}"
   triggers {
     instance_ips = "${join(",", concat(aws_instance.controller.*.public_ip,aws_instance.worker.*.public_ip))}"

@@ -2,14 +2,12 @@
 # https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/03-etcd.md
 #
 resource "null_resource" "provision-etcd" {
-  depends_on = ["null_resource.copy-cert-workers"]
+  depends_on = ["null_resource.copy-cert", "null_resource.kubernetes-cert"]
 
   count = "${var.instance_controller_count}"
   triggers {
     instance_ips = "${join(",", aws_instance.controller.*.id)}"
   }
-
-  depends_on = ["null_resource.kubernetes-cert"]
 
   connection {
     host = "${element(concat(aws_instance.controller.*.public_ip), count.index)}"
