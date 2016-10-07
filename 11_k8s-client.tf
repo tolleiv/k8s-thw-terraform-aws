@@ -20,7 +20,14 @@ kubectl config set-context k8s-hard \
   --cluster=kubernetes-the-hard-way \
   --user=admin
 kubectl config use-context k8s-hard
-kubectl get componentstatuses
+
+while true; do
+  if [ $(kubectl get componentstatuses | grep Healthy | wc -l) -eq 5 ]; then
+    break;
+  fi
+  echo "Waiting for the cluster to be ready..."
+  sleep 1;
+done
 kubectl get nodes
     EOT
   }
